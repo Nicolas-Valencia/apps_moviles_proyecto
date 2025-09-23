@@ -5,6 +5,7 @@ import com.example.appsmoviles.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -20,11 +21,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun RegisterForm () {
+fun RegisterScreen () {
 
     var name by rememberSaveable { mutableStateOf("") }
     var user by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
+    var isEmailError by rememberSaveable { mutableStateOf(false) }
+
     var city by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val context = LocalContext.current
@@ -33,7 +36,8 @@ fun RegisterForm () {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically),
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(30.dp),
         content = {
 
             Text(
@@ -62,8 +66,15 @@ fun RegisterForm () {
                         Text(text = stringResource(R.string.txt_email))
                 },
                 value = email,
+                isError = isEmailError,
+                supportingText = {
+                    if (isEmailError) {
+                        Text(text = stringResource(R.string.txt_email_error))
+                    }
+                },
                 onValueChange = {
                     email = it
+                    isEmailError = email.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 }
             )
             OutlinedTextField(
@@ -85,7 +96,7 @@ fun RegisterForm () {
                 }
             )
 
-
+            // CAMBIARRR
             Button(
                 onClick = {
                     if (email == "nicolas@gmail.com" && password == "123") {
@@ -99,6 +110,10 @@ fun RegisterForm () {
                         text = stringResource(R.string.btn_register)
                     )
                 }
+            )
+
+            Text(
+                text = stringResource(R.string.txt_create_account)
             )
         }
     )

@@ -2,11 +2,19 @@
     <string name="app_name">Apps Moviles</string>
 
     <!-- TEXTOS FORMULARIOS LOGIN Y REGISTRO -->
-    <string name="txt_name">Nombre</string>
+    <string name="txt_name">Nombre completo</string>
     <string name="txt_user">Usuario</string>
     <string name="txt_email">Correo electrónico</string>
+    <string name="txt_email_error">El correo electrónico no es válido</string>
     <string name="txt_city">Ciudad de residencia</string>
     <string name="txt_password">Contraseña</string>
+    <string name="txt_password_error">La contraseña debe tener al menos 6 caracteres</string>
     <string name="btn_login">Iniciar Sesión</string>
     <string name="btn_register">Registrarse</string>
+    <string name="txt_create_account">¿No tienes cuenta? Registrate aquí</string>
+    <string name="txt_login">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <!-- TEXTOS ALERTAS -->
+    <string name="txt_login_success">Sesión iniciada correctamente</string>
+    <string name="txt_login_error">Error al iniciar sesión</string>
 </resources>
