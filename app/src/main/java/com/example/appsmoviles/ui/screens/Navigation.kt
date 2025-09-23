@@ -16,11 +16,22 @@ fun Navigation() {
         startDestination = RouteScreen.Login
     ) {
         composable<RouteScreen.Login> {
-            LoginScreen()
+            LoginScreen(
+                onNavigateToRegister = {
+                    navController.navigate(RouteScreen.Register)
+                },
+                onNavigateToHome = {
+                    navController.navigate(RouteScreen.Home)
+                }
+            )
         }
 
         composable<RouteScreen.Register> {
-            RegisterScreen()
+            RegisterScreen(
+                onNavigateToLogin = {
+                    navController.navigate(RouteScreen.Login)
+                }
+            )
         }
 
         composable<RouteScreen.Home> {

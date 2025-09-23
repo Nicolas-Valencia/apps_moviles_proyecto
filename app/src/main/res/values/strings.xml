@@ -17,4 +17,10 @@
     <!-- TEXTOS ALERTAS -->
     <string name="txt_login_success">Sesión iniciada correctamente</string>
     <string name="txt_login_error">Error al iniciar sesión</string>
+    <string name="txt_register_error">Error al registrarse</string>
+    <string name="txt_logout_success">Sesión cerrada correctamente</string>
+    <string name="txt_name_error">El nombre no puede estar en blanco</string>
+    <string name="txt_user_error">El usuario no puede estar en blanco</string>
+    <string name="txt_city_error">La ciudad de residencia no puede estar en blanco</string>
+
 </resources>

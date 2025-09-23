@@ -7,7 +7,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,9 +24,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.example.appsmoviles.ui.components.TextFields
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Lock
 
 @Composable
-fun LoginScreen () {
+fun LoginScreen (
+    onNavigateToHome: () -> Unit,
+    onNavigateToRegister: () -> Unit
+) {
 
     var email by rememberSaveable {mutableStateOf("")}
     var password by rememberSaveable {mutableStateOf("")}
@@ -38,13 +47,14 @@ fun LoginScreen () {
         content = {
 
             Text(
-                text = "INICIAR SESIÓN"
+                text = stringResource(R.string.btn_login),
             )
 
             TextFields(
                 value = email,
                 label = stringResource(R.string.txt_email),
                 supportingText = stringResource(R.string.txt_email_error),
+                icon = Icons.Outlined.Email,
                 onValueChange = {
                     email = it
                 },
@@ -58,6 +68,7 @@ fun LoginScreen () {
                 value = password,
                 label = stringResource(R.string.txt_password),
                 supportingText = stringResource(R.string.txt_password_error),
+                icon = Icons.Outlined.Lock,
                 onValueChange = {
                     password = it
                 },
@@ -69,20 +80,36 @@ fun LoginScreen () {
             Button(
                 onClick = {
                     if (email == "nicolas@gmail.com" && password == "123456") {
+                        onNavigateToHome()
                         Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
                     }
                 },
                 content = {
+                    Icon(
+                        imageVector = Icons.Outlined.AccountCircle,
+                        contentDescription = stringResource(R.string.btn_login)
+                    )
                     Text(
                         text = stringResource(R.string.btn_login)
                     )
                 }
             )
 
-            Text(
-                text = stringResource(R.string.txt_create_account)
+            Button(
+                onClick = {
+                    onNavigateToRegister()
+                },
+                content = {
+                    Icon(
+                        imageVector = Icons.Outlined.AddCircle,
+                        contentDescription = stringResource(R.string.btn_register)
+                    )
+                    Text(
+                        text = stringResource(R.string.txt_create_account)
+                    )
+                }
             )
         }
     )

@@ -1,12 +1,21 @@
 package com.example.appsmoviles.ui.screens
 
+import android.util.Patterns
 import android.widget.Toast
 import com.example.appsmoviles.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.AddCircle
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,9 +28,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.example.appsmoviles.ui.components.TextFields
 
 @Composable
-fun RegisterScreen () {
+fun RegisterScreen (
+    onNavigateToLogin: () -> Unit
+) {
 
     var name by rememberSaveable { mutableStateOf("") }
     var user by rememberSaveable { mutableStateOf("") }
@@ -41,79 +53,104 @@ fun RegisterScreen () {
         content = {
 
             Text(
-                text = "INICIAR SESIÓN"
+                text = stringResource(R.string.btn_register),
             )
-            OutlinedTextField(
-                label = {
-                    Text(text = stringResource(R.string.txt_name))
-                },
+
+            TextFields(
                 value = name,
+                label = stringResource(R.string.txt_name),
+                supportingText = stringResource(R.string.txt_name_error),
+                icon = Icons.Outlined.Person,
                 onValueChange = {
                     name = it
+                },
+                onValidate = {
+                    name.isBlank()
                 }
             )
-            OutlinedTextField(
-                label = {
-                    Text(text = stringResource(R.string.txt_user))
-                },
+            TextFields(
                 value = user,
+                label = stringResource(R.string.txt_user),
+                supportingText = stringResource(R.string.txt_user_error),
+                icon = Icons.Outlined.AccountCircle,
                 onValueChange = {
                     user = it
+                },
+                onValidate = {
+                    user.isBlank()
                 }
             )
-            OutlinedTextField(
-                label = {
-                        Text(text = stringResource(R.string.txt_email))
-                },
+            TextFields(
                 value = email,
-                isError = isEmailError,
-                supportingText = {
-                    if (isEmailError) {
-                        Text(text = stringResource(R.string.txt_email_error))
-                    }
-                },
+                label = stringResource(R.string.txt_email),
+                supportingText = stringResource(R.string.txt_email_error),
+                icon = Icons.Outlined.Email,
                 onValueChange = {
                     email = it
-                    isEmailError = email.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                },
+                onValidate = {
+                    email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 }
             )
-            OutlinedTextField(
-                label = {
-                    Text(text = stringResource(R.string.txt_city))
-                },
+            TextFields(
                 value = city,
+                label = stringResource(R.string.txt_city),
+                supportingText = stringResource(R.string.txt_city_error),
+                icon = Icons.Outlined.LocationOn,
                 onValueChange = {
                     city = it
+                },
+                onValidate = {
+                    city.isBlank()
                 }
             )
-            OutlinedTextField(
-                label = {
-                    Text(text = stringResource(R.string.txt_password))
-                },
+            TextFields(
+                isPassword = true,
                 value = password,
+                label = stringResource(R.string.txt_password),
+                supportingText = stringResource(R.string.txt_password_error),
+                icon = Icons.Outlined.Lock,
                 onValueChange = {
                     password = it
+                },
+                onValidate = {
+                    password.isBlank() || password.length < 6
                 }
             )
 
-            // CAMBIARRR
             Button(
                 onClick = {
-                    if (email == "nicolas@gmail.com" && password == "123") {
-                        Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                    if (name.isNotBlank() && user.isNotBlank() && email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && city.isNotBlank() && password.isNotBlank() && password.length >= 6) {
+                        Toast.makeText(context, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        onNavigateToLogin()
                     } else {
-                        Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Llene correctamente los campos", Toast.LENGTH_SHORT).show()
                     }
                 },
                 content = {
+                    Icon(
+                        imageVector = Icons.Outlined.AddCircle,
+                        contentDescription = stringResource(R.string.btn_register)
+                    )
                     Text(
                         text = stringResource(R.string.btn_register)
                     )
                 }
             )
 
-            Text(
-                text = stringResource(R.string.txt_create_account)
+            Button(
+                onClick = {
+                    onNavigateToLogin()
+                },
+                content = {
+                    Icon(
+                        imageVector = Icons.Outlined.AccountCircle,
+                        contentDescription = stringResource(R.string.btn_register)
+                    )
+                    Text(
+                        text = stringResource(R.string.txt_login)
+                    )
+                }
             )
         }
     )
