@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.ui.config.RouteScreen
+import com.example.pruebacrearlugar.ui.screen.CreatePlace
 
 @Composable
 fun Navigation() {
@@ -20,8 +21,8 @@ fun Navigation() {
                 onNavigateToRegister = {
                     navController.navigate(RouteScreen.Register)
                 },
-                onNavigateToHome = {
-                    navController.navigate(RouteScreen.Home)
+                onNavigateToCreatePlace = {
+                    navController.navigate(RouteScreen.CreatePlace)
                 }
             )
         }
@@ -36,6 +37,10 @@ fun Navigation() {
 
         composable<RouteScreen.Home> {
             HomeScreen()
+        }
+
+        composable<RouteScreen.CreatePlace> {
+            CreatePlace()
         }
     }
 

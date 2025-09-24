@@ -29,7 +29,7 @@ import androidx.compose.material.icons.outlined.Lock
 
 @Composable
 fun LoginScreen (
-    onNavigateToHome: () -> Unit,
+    onNavigateToCreatePlace: () -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
 
@@ -80,7 +80,7 @@ fun LoginScreen (
             Button(
                 onClick = {
                     if (email == "nicolas@gmail.com" && password == "123456") {
-                        onNavigateToHome()
+                        onNavigateToCreatePlace()
                         Toast.makeText(context, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
