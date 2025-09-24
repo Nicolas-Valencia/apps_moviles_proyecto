@@ -23,4 +23,38 @@
     <string name="txt_user_error">El usuario no puede estar en blanco</string>
     <string name="txt_city_error">La ciudad de residencia no puede estar en blanco</string>
 
+    <!-- TEXTOS GENERALES -->
+    <string name="txt_basic_info">Información básica</string>
+    <string name="txt_account_info">Información de la cuenta</string>
+    <string name="txt_contact_info">Información de contacto</string>
+
+    <!-- TEXTOS EDITAR -->
+    <string name="txt_edit_account">Editar Perfil</string>
+    <string name="txt_profile_picture">">Foto de perfil</string>
+    <string name="txt_edit_profile_picture">Editar foto de perfil</string>
+    <string name="txt_edit_rol">Rol</string>
+    <string name="txt_rol_error">El rol no puede estar en blanco</string>
+    <string name="txt_profile_updated">Perfil actualizado correctamente"</string>
+    <string name="txt_save_changes">Guardar cambios</string>
+
+    <!-- TEXTOS CREAR LUGAR -->
+    <string name="txt_create_place">Crear Lugar</string>
+    <string name="txt_select_category">Categoría</string>
+    <string name="txt_restaurant">Restaurante</string>
+    <string name="txt_cafeteria">Cafetería</string>
+    <string name="txt_bar">Bar</string>
+    <string name="txt_hotel">Hotel</string>
+    <string name="txt_shop">Tienda</string>
+    <string name="txt_service">Servicio</string>
+    <string name="txt_description">Descripción</string>
+    <string name="txt_description_error">La descripción no puede estar en blanco</string>
+    <string name="txt_horario">Horario</string>
+    <string name="txt_horario_error">El horario no puede estar en blanco</string>
+    <string name="txt_link_ubicacion">Link ubicación</string>
+    <string name="txt_link_ubicacion_error">El link de ubicación no puede estar en blanco</string>
+    <string name="txt_telefono">Teléfono</string>
+    <string name="txt_telefono_error">El teléfono no puede estar en blanco</string>
+    <string name="txt_place_created">Lugar creado correctamente</string>"
+    <string name="txt_save">Guardar</string>
+
 </resources>

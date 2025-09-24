@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import com.example.appsmoviles.R
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun CreatePlace() {
@@ -35,7 +37,7 @@ fun CreatePlace() {
     var telefonoError by remember { mutableStateOf(false) }
 
     var expandedCategoria by remember { mutableStateOf(false) }
-    val categorias = listOf("Restaurante", "Cafetería", "Bar", "Hotel", "Tienda", "Servicio")
+    val categorias = listOf(stringResource(R.string.txt_restaurant), stringResource(R.string.txt_cafeteria), stringResource(R.string.txt_bar), stringResource(R.string.txt_hotel), stringResource(R.string.txt_shop), stringResource(R.string.txt_service))
 
     Column(
         modifier = Modifier
@@ -45,7 +47,7 @@ fun CreatePlace() {
     ) {
 
         Text(
-            text = "Crear Lugar",
+            text = stringResource(R.string.txt_create_place),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -55,7 +57,7 @@ fun CreatePlace() {
         )
 
         Text(
-            text = "Información básica",
+            text = stringResource(R.string.txt_basic_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -67,7 +69,7 @@ fun CreatePlace() {
                 nombre = it
                 nombreError = false
             },
-            label = { Text("Nombre") },
+            label = { Text(stringResource(R.string.txt_name)) },
             isError = nombreError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -75,7 +77,7 @@ fun CreatePlace() {
         )
         if (nombreError) {
             Text(
-                text = "El nombre es requerido",
+                text = stringResource(R.string.txt_name_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -88,7 +90,7 @@ fun CreatePlace() {
                 descripcion = it
                 descripcionError = false
             },
-            label = { Text("Descripción") },
+            label = { Text(stringResource(R.string.txt_description)) },
             isError = descripcionError,
             minLines = 3,
             modifier = Modifier
@@ -97,7 +99,7 @@ fun CreatePlace() {
         )
         if (descripcionError) {
             Text(
-                text = "La descripción es requerida",
+                text = stringResource(R.string.txt_description_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -110,7 +112,7 @@ fun CreatePlace() {
                 horario = it
                 horarioError = false
             },
-            label = { Text("Horario") },
+            label = { Text(stringResource(R.string.txt_horario)) },
             isError = horarioError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -118,7 +120,7 @@ fun CreatePlace() {
         )
         if (horarioError) {
             Text(
-                text = "El horario es requerido",
+                text = stringResource(R.string.txt_horario_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -129,7 +131,7 @@ fun CreatePlace() {
             value = categoria,
             onValueChange = { },
             readOnly = true,
-            label = { Text("Categoría") },
+            label = { Text(stringResource(R.string.txt_select_category)) },
             isError = categoriaError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -166,7 +168,7 @@ fun CreatePlace() {
         }
         if (categoriaError) {
             Text(
-                text = "Selecciona una categoría",
+                text = stringResource(R.string.txt_select_category),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
@@ -176,7 +178,7 @@ fun CreatePlace() {
         }
 
         Text(
-            text = "Información de contacto",
+            text = stringResource(R.string.txt_contact_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -188,7 +190,7 @@ fun CreatePlace() {
                 linkUbicacion = it
                 linkUbicacionError = false
             },
-            label = { Text("Link ubicación") },
+            label = { Text(stringResource(R.string.txt_link_ubicacion)) },
             isError = linkUbicacionError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -196,7 +198,7 @@ fun CreatePlace() {
         )
         if (linkUbicacionError) {
             Text(
-                text = "El link de ubicación es requerido",
+                text = stringResource(R.string.txt_link_ubicacion_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -209,7 +211,7 @@ fun CreatePlace() {
                 telefono = it
                 telefonoError = false
             },
-            label = { Text("Teléfono") },
+            label = { Text(stringResource(R.string.txt_telefono)) },
             isError = telefonoError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -217,7 +219,7 @@ fun CreatePlace() {
         )
         if (telefonoError) {
             Text(
-                text = "El teléfono es requerido",
+                text = stringResource(R.string.txt_telefono_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 32.dp)
@@ -253,7 +255,7 @@ fun CreatePlace() {
                 .fillMaxWidth()
                 .height(48.dp)
         ) {
-            Text("Guardar", fontSize = 16.sp)
+            Text(stringResource(R.string.txt_save), fontSize = 16.sp)
         }
     }
 }

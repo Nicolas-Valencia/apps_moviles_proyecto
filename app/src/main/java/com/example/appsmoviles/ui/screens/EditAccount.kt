@@ -3,6 +3,7 @@ package com.example.appsmoviles.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import com.example.appsmoviles.R
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun EditAccount() {
@@ -38,7 +40,7 @@ fun EditAccount() {
     ) {
 
         Text(
-            text = "Editar Perfil",
+            text = stringResource(R.string.txt_edit_account),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -55,7 +57,7 @@ fun EditAccount() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Foto de perfil",
+                text = stringResource(R.string.txt_edit_profile_picture),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -69,12 +71,12 @@ fun EditAccount() {
                     ).show()
                 }
             ) {
-                Text("Cambiar foto de perfil")
+                Text(stringResource(R.string.txt_edit_profile_picture))
             }
         }
 
         Text(
-            text = "Información básica",
+            text = stringResource(R.string.txt_basic_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -86,7 +88,7 @@ fun EditAccount() {
                 nombre = it
                 nombreError = false
             },
-            label = { Text("Nombre") },
+            label = { Text(stringResource(R.string.txt_name)) },
             isError = nombreError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -94,7 +96,7 @@ fun EditAccount() {
         )
         if (nombreError) {
             Text(
-                text = "El nombre es requerido",
+                text = stringResource(R.string.txt_name_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -107,7 +109,7 @@ fun EditAccount() {
                 username = it
                 usernameError = false
             },
-            label = { Text("Username") },
+            label = { Text(stringResource(R.string.txt_user)) },
             isError = usernameError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -115,7 +117,7 @@ fun EditAccount() {
         )
         if (usernameError) {
             Text(
-                text = "El username es requerido",
+                text = stringResource(R.string.txt_user_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -128,7 +130,7 @@ fun EditAccount() {
                 ciudad = it
                 ciudadError = false
             },
-            label = { Text("Ciudad") },
+            label = { Text(stringResource(R.string.txt_city)) },
             isError = ciudadError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -136,7 +138,7 @@ fun EditAccount() {
         )
         if (ciudadError) {
             Text(
-                text = "La ciudad es requerida",
+                text = stringResource(R.string.txt_city_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 24.dp)
@@ -146,7 +148,7 @@ fun EditAccount() {
         }
 
         Text(
-            text = "Información de la cuenta",
+            text = stringResource(R.string.txt_account_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -158,7 +160,7 @@ fun EditAccount() {
                 email = it
                 emailError = false
             },
-            label = { Text("Email") },
+            label = { Text(stringResource(R.string.txt_email)) },
             isError = emailError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -166,7 +168,7 @@ fun EditAccount() {
         )
         if (emailError) {
             Text(
-                text = "El email es requerido",
+                text = stringResource(R.string.txt_email_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -179,7 +181,7 @@ fun EditAccount() {
                 rol = it
                 rolError = false
             },
-            label = { Text("Rol") },
+            label = { Text(stringResource(R.string.txt_edit_rol)) },
             isError = rolError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -187,7 +189,7 @@ fun EditAccount() {
         )
         if (rolError) {
             Text(
-                text = "El rol es requerido",
+                text = stringResource(R.string.txt_rol_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 16.dp, bottom = 32.dp)
@@ -222,7 +224,7 @@ fun EditAccount() {
                 .fillMaxWidth()
                 .height(48.dp)
         ) {
-            Text("Guardar Cambios", fontSize = 16.sp)
+            Text(stringResource(R.string.txt_save_changes), fontSize = 16.sp)
         }
     }
 }
