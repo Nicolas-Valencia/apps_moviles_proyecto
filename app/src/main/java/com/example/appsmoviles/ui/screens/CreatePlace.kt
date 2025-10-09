@@ -1,13 +1,12 @@
-package com.example.pruebacrearlugar.ui.screen
+package com.example.appsmoviles.ui.screen
 
-import androidx.compose.foundation.clickable
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import com.example.appsmoviles.R
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -15,18 +14,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
+import com.example.appsmoviles.ui.components.DropdownMenu
+import com.example.appsmoviles.ui.components.TextFields
 
 @Composable
 fun CreatePlace() {
     val context = LocalContext.current
 
-    var nombre by remember { mutableStateOf("") }
-    var descripcion by remember { mutableStateOf("") }
-    var horario by remember { mutableStateOf("") }
-    var categoria by remember { mutableStateOf("Selecciona categoría") }
-    var linkUbicacion by remember { mutableStateOf("") }
-    var telefono by remember { mutableStateOf("") }
+    var nombre by rememberSaveable { mutableStateOf("") }
+    var descripcion by rememberSaveable { mutableStateOf("") }
+    var horario by rememberSaveable { mutableStateOf("") }
+    var categoria by rememberSaveable { mutableStateOf("") }
+    var linkUbicacion by rememberSaveable { mutableStateOf("") }
+    var telefono by rememberSaveable { mutableStateOf("") }
 
     // Estados para errores
     var nombreError by remember { mutableStateOf(false) }
@@ -36,8 +38,14 @@ fun CreatePlace() {
     var linkUbicacionError by remember { mutableStateOf(false) }
     var telefonoError by remember { mutableStateOf(false) }
 
-    var expandedCategoria by remember { mutableStateOf(false) }
-    val categorias = listOf(stringResource(R.string.txt_restaurant), stringResource(R.string.txt_cafeteria), stringResource(R.string.txt_bar), stringResource(R.string.txt_hotel), stringResource(R.string.txt_shop), stringResource(R.string.txt_service))
+    val categorias = listOf(
+        stringResource(R.string.txt_restaurant),
+        stringResource(R.string.txt_cafeteria),
+        stringResource(R.string.txt_bar),
+        stringResource(R.string.txt_hotel),
+        stringResource(R.string.txt_shop),
+        stringResource(R.string.txt_service)
+    )
 
     Column(
         modifier = Modifier
@@ -63,115 +71,57 @@ fun CreatePlace() {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        OutlinedTextField(
+        // Campo Nombre usando componente TextFields
+        TextFields(
             value = nombre,
-            onValueChange = {
-                nombre = it
-                nombreError = false
-            },
-            label = { Text(stringResource(R.string.txt_name)) },
-            isError = nombreError,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
+            label = stringResource(R.string.txt_name),
+            supportingText = stringResource(R.string.txt_name_error),
+            onValueChange = { nombre = it },
+            onValidate = { it.isBlank() }
         )
-        if (nombreError) {
-            Text(
-                text = stringResource(R.string.txt_name_error),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-            )
-        }
 
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Campo Descripción usando componente TextFields
+        TextFields(
             value = descripcion,
-            onValueChange = {
-                descripcion = it
-                descripcionError = false
-            },
-            label = { Text(stringResource(R.string.txt_description)) },
-            isError = descripcionError,
-            minLines = 3,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
+            label = stringResource(R.string.txt_description),
+            supportingText = stringResource(R.string.txt_description_error),
+            onValueChange = { descripcion = it },
+            onValidate = { it.isBlank() }
         )
-        if (descripcionError) {
-            Text(
-                text = stringResource(R.string.txt_description_error),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-            )
-        }
 
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Campo Horario usando componente TextFields
+        TextFields(
             value = horario,
+            label = stringResource(R.string.txt_horario),
+            supportingText = stringResource(R.string.txt_horario_error),
+            onValueChange = { horario = it },
+            onValidate = { it.isBlank() }
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Componente DropdownMenu
+        DropdownMenu(
+            label = stringResource(R.string.txt_select_category),
+            list = categorias,
+            selectedItem = categoria,
             onValueChange = {
-                horario = it
-                horarioError = false
+                categoria = it
+                categoriaError = false
             },
-            label = { Text(stringResource(R.string.txt_horario)) },
-            isError = horarioError,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        )
-        if (horarioError) {
-            Text(
-                text = stringResource(R.string.txt_horario_error),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-            )
-        }
-
-        OutlinedTextField(
-            value = categoria,
-            onValueChange = { },
-            readOnly = true,
-            label = { Text(stringResource(R.string.txt_select_category)) },
-            isError = categoriaError,
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { expandedCategoria = !expandedCategoria }
-                .padding(bottom = 8.dp)
+            isError = categoriaError
         )
 
-        if (expandedCategoria) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                Column {
-                    categorias.forEach { option ->
-                        Text(
-                            text = option,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    categoria = option
-                                    expandedCategoria = false
-                                    categoriaError = false
-                                }
-                                .padding(16.dp)
-                        )
-                        if (option != categorias.last()) {
-                            HorizontalDivider()
-                        }
-                    }
-                }
-            }
-        }
         if (categoriaError) {
             Text(
-                text = stringResource(R.string.txt_select_category),
+                text = stringResource(R.string.txt_select_category_error),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 16.dp)
             )
         } else {
             Spacer(modifier = Modifier.height(16.dp))
@@ -184,49 +134,27 @@ fun CreatePlace() {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        OutlinedTextField(
+        // Campo Link Ubicación usando componente TextFields
+        TextFields(
             value = linkUbicacion,
-            onValueChange = {
-                linkUbicacion = it
-                linkUbicacionError = false
-            },
-            label = { Text(stringResource(R.string.txt_link_ubicacion)) },
-            isError = linkUbicacionError,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
+            label = stringResource(R.string.txt_link_ubicacion),
+            supportingText = stringResource(R.string.txt_link_ubicacion_error),
+            onValueChange = { linkUbicacion = it },
+            onValidate = { it.isBlank() },
         )
-        if (linkUbicacionError) {
-            Text(
-                text = stringResource(R.string.txt_link_ubicacion_error),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-            )
-        }
 
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Campo Teléfono usando componente TextFields
+        TextFields(
             value = telefono,
-            onValueChange = {
-                telefono = it
-                telefonoError = false
-            },
-            label = { Text(stringResource(R.string.txt_telefono)) },
-            isError = telefonoError,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
+            label = stringResource(R.string.txt_telefono),
+            supportingText = stringResource(R.string.txt_telefono_error),
+            onValueChange = { telefono = it },
+            onValidate = { it.isBlank() }
         )
-        if (telefonoError) {
-            Text(
-                text = stringResource(R.string.txt_telefono_error),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, bottom = 32.dp)
-            )
-        } else {
-            Spacer(modifier = Modifier.height(24.dp))
-        }
+
+        Spacer(modifier = Modifier.height(24.dp))
 
         Button(
             onClick = {
@@ -234,19 +162,20 @@ fun CreatePlace() {
                 nombreError = nombre.isBlank()
                 descripcionError = descripcion.isBlank()
                 horarioError = horario.isBlank()
-                categoriaError = categoria == "Selecciona categoría"
+                categoriaError = categoria.isBlank()
                 linkUbicacionError = linkUbicacion.isBlank()
                 telefonoError = telefono.isBlank()
 
                 if (!nombreError && !descripcionError && !horarioError &&
                     !categoriaError && !linkUbicacionError && !telefonoError) {
 
-                    Toast.makeText(context, "Lugar guardado exitosamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.txt_place_created), Toast.LENGTH_SHORT).show()
+                    Log.d("RegisterScreen", "valores: $nombre, $descripcion, $horario, $categoria, $linkUbicacion, $telefono")
 
                     nombre = ""
                     descripcion = ""
                     horario = ""
-                    categoria = "Selecciona categoría"
+                    categoria = ""
                     linkUbicacion = ""
                     telefono = ""
                 }

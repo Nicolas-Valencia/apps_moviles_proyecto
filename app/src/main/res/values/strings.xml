@@ -40,6 +40,7 @@
     <!-- TEXTOS CREAR LUGAR -->
     <string name="txt_create_place">Crear Lugar</string>
     <string name="txt_select_category">Categoría</string>
+    <string name="txt_select_category_error">Categoría</string>
     <string name="txt_restaurant">Restaurante</string>
     <string name="txt_cafeteria">Cafetería</string>
     <string name="txt_bar">Bar</string>

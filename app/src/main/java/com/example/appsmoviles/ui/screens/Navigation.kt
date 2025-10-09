@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.ui.config.RouteScreen
-import com.example.pruebacrearlugar.ui.screen.CreatePlace
+import com.example.appsmoviles.ui.screen.CreatePlace
 
 @Composable
 fun Navigation() {
