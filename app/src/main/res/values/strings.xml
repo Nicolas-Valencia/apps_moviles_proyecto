@@ -58,4 +58,12 @@
     <string name="txt_place_created">Lugar creado correctamente</string>"
     <string name="txt_save">Guardar</string>
 
+    <!-- TEXTOS HOME USER -->
+
+    <string name="title_user">Inicio usuario</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_search">Busqueda</string>
+    <string name="menu_places">Lugares</string>
+    <string name="menu_profile">Perfil</string>
+
 </resources>

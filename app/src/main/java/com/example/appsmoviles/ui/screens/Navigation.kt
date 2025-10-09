@@ -6,6 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.ui.config.RouteScreen
 import com.example.appsmoviles.ui.screen.CreatePlace
+import com.example.appsmoviles.ui.screens.user.HomeUser
+
 
 @Composable
 fun Navigation() {
@@ -14,15 +16,15 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = RouteScreen.Login
+        startDestination = RouteScreen.Home
     ) {
         composable<RouteScreen.Login> {
             LoginScreen(
+                onNavigateToHome = {
+                    navController.navigate(RouteScreen.Home)
+                },
                 onNavigateToRegister = {
                     navController.navigate(RouteScreen.Register)
-                },
-                onNavigateToCreatePlace = {
-                    navController.navigate(RouteScreen.CreatePlace)
                 }
             )
         }
@@ -36,12 +38,17 @@ fun Navigation() {
         }
 
         composable<RouteScreen.Home> {
-            HomeScreen()
+            HomeUser()
         }
 
         composable<RouteScreen.CreatePlace> {
             CreatePlace()
         }
+
+        composable<RouteScreen.EditAccount> {
+            EditAccount()
+        }
     }
 
 }
+
