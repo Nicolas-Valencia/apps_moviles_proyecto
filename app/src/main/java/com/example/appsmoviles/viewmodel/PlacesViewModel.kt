@@ -25,7 +25,7 @@ class PlacesViewModel {
                 description = "Descripción del restaurante 1",
                 address = "Dirección del restaurante 1",
                 location = Location(1.0, 2.0),
-                images = listOf("imagen1.jpg", "imagen2.jpg"),
+                images = listOf("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbv-Dn8ZP4OmnECVuhL_w9VAa7YuJoAkZXSQ&s"),
                 phones = listOf("123456789", "987654321"),
                 schedule = listOf(),
                 type = PlaceType.RESTAURANT
@@ -36,7 +36,7 @@ class PlacesViewModel {
                 description = "Descripción de la tienda",
                 address = "Dirección de la tienda",
                 location = Location(3.0, 4.0),
-                images = listOf("imagen3.jpg", "imagen4.jpg"),
+                images = listOf("https://www.shutterstock.com/image-photo/south-sulawesi-indonesia-september-10-260nw-2577424109.jpg"),
                 phones = listOf("987654321", "123456789"),
                 schedule = listOf(),
                 type = PlaceType.SHOPPING

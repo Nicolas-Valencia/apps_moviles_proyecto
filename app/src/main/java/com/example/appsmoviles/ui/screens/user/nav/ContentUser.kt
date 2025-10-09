@@ -11,6 +11,7 @@ import com.example.appsmoviles.ui.screens.user.tabs.Favorites
 import com.example.appsmoviles.ui.screens.user.tabs.Home
 import com.example.appsmoviles.ui.screens.user.tabs.Profile
 import com.example.appsmoviles.ui.screens.user.tabs.Search
+import com.example.appsmoviles.viewmodel.PlacesViewModel
 
 @Composable
 fun ContentUser(
@@ -18,11 +19,14 @@ fun ContentUser(
     navController: NavHostController
 ) {
 
+    val placesViewModel: PlacesViewModel = PlacesViewModel()
+
     NavHost(
         modifier = Modifier.padding(padding),
         navController = navController,
         startDestination = RouteTab.Home
     ){
+
         composable<RouteTab.Home> {
             Home()
         }
@@ -33,7 +37,9 @@ fun ContentUser(
             CreatePlace()
         }
         composable<RouteTab.Favorites> {
-            Favorites()
+            Favorites(
+                placesViewModel = placesViewModel
+            )
         }
         composable<RouteTab.Profile> {
             Profile()
