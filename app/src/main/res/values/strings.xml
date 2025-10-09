@@ -66,4 +66,13 @@
     <string name="menu_places">Lugares</string>
     <string name="menu_profile">Perfil</string>
 
+    <!-- TEXTOS HOME ADMIN -->
+    <string name="title_admin">Inicio administrador</string>
+    <string name="menu_homeAdmin">Inicio</string>
+    <string name="menu_managementPlace">Gestión Lugares</string>
+    <string name="menu_rules">Normas</string>
+    <string name="menu_profileAdmin">Perfil</string>
+
+
+
 </resources>

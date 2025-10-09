@@ -6,7 +6,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.ui.config.RouteScreen
 import com.example.appsmoviles.ui.screen.CreatePlace
-import com.example.appsmoviles.ui.screens.user.HomeUser
+import com.example.appsmoviles.ui.screens.admin.HomeAdmin
+
+
 
 
 @Composable
@@ -38,7 +40,7 @@ fun Navigation() {
         }
 
         composable<RouteScreen.Home> {
-            HomeUser()
+            HomeAdmin()
         }
 
         composable<RouteScreen.CreatePlace> {
