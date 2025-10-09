@@ -1,5 +1,7 @@
 package com.example.appsmoviles.ui.screens.user
 
+import BottomBarUser
+import ContentUser
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.R
-import com.example.appsmoviles.ui.screens.user.bottombar.BottomBarUser
-import com.example.appsmoviles.ui.screens.user.nav.ContentUser
 
 @Composable
 fun HomeUser(){
@@ -22,13 +22,11 @@ fun HomeUser(){
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopBarUser()
-
         },
         bottomBar = {
             BottomBarUser(
                 navController = navController
             )
-
         }
     ) { padding ->
         ContentUser(
@@ -39,13 +37,14 @@ fun HomeUser(){
     }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarUser(){
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = stringResource(R.string.title_user)
+                text = stringResource(R.string.app_name)
             )
         }
     )

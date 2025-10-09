@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 sealed class RouteTab {
 
     @Serializable
-    data object AdminHome : RouteTab()
+    data object Home : RouteTab()
 
     @Serializable
     data object ManagementPlace : RouteTab()

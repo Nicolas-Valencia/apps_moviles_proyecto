@@ -4,10 +4,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun Places(){
+fun Favorites(){
 
     Text(
-        text = "Esta es la pantalla de lugares"
+        text = "Esta es la pantalla de favoritos"
     )
 
 }

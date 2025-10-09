@@ -45,7 +45,7 @@ fun TopBarAdmin(){
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = stringResource(R.string.title_admin)
+                text = stringResource(R.string.app_name)
             )
         }
     )

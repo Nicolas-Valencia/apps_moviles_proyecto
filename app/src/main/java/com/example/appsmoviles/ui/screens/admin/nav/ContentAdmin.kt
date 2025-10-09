@@ -21,9 +21,9 @@ fun ContentAdmin(
     NavHost(
         modifier = Modifier.padding(padding),
         navController = navController,
-        startDestination = RouteTab.AdminHome
+        startDestination = RouteTab.Home
     ){
-        composable<RouteTab.AdminHome> {
+        composable<RouteTab.Home> {
             AdminHome()
         }
         composable<RouteTab.ManagementPlace>{

@@ -1,10 +1,9 @@
-package com.example.appsmoviles.ui.screens.user.bottombar
-
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -20,35 +19,28 @@ import com.example.appsmoviles.ui.screens.user.nav.RouteTab
 
 @Composable
 fun BottomBarUser(
-
     navController: NavHostController
+){
 
-) {
+    val navBarStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBarStackEntry?.destination
 
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
+    NavigationBar (
 
+    ) {
 
-
-    NavigationBar{
-
-        Destination.entries.forEachIndexed { index, destination ->
+        Destination.entries.forEachIndexed {index, destination ->
 
             val isSelected = currentDestination?.route == destination.route::class.qualifiedName
 
-
-
-            //De lugares
             NavigationBarItem(
                 label = {
                     Text(
                         text = stringResource(destination.label)
-
                     )
                 },
                 onClick = {
                     navController.navigate(destination.route)
-
                 },
                 icon = {
                     Icon(
@@ -57,19 +49,20 @@ fun BottomBarUser(
                     )
                 },
                 selected = isSelected
-
             )
         }
-
     }
 }
+
+
 enum class Destination(
     val route: RouteTab,
     val label: Int,
-    val icon: ImageVector
-){
-    HOME(RouteTab.Map, R.string.menu_home, Icons.Default.Home),
-    SEARCH(RouteTab.Search, R.string.menu_search, Icons.Default.Search),
-    PLACES(RouteTab.Places, R.string.menu_places, Icons.Default.Place),
-    PROFILE(RouteTab.Profile, R.string.menu_profile, Icons.Default.AccountCircle)
+    val icon: ImageVector,
+) {
+    HOME(RouteTab.Home, R.string.menu_home, Icons.Outlined.Home),
+    SEARCH(RouteTab.Search, R.string.menu_search, Icons.Outlined.Search),
+    ADD(RouteTab.CreatePlace, R.string.menu_create_place, Icons.Outlined.Add),
+    FAVORITES(RouteTab.Favorites, R.string.menu_favorites, Icons.Outlined.FavoriteBorder),
+    PROFILE(RouteTab.Profile, R.string.menu_profile, Icons.Outlined.Person)
 }

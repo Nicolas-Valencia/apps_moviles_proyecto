@@ -17,11 +17,14 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = RouteScreen.HomeUser
+        startDestination = RouteScreen.Login
     ) {
         composable<RouteScreen.Login> {
             LoginScreen(
-                onNavigateToHome = {
+                onNavigateToHomeAdmin = {
+                    navController.navigate(RouteScreen.HomeAdmin)
+                },
+                onNavigateToHomeUser = {
                     navController.navigate(RouteScreen.HomeUser)
                 },
                 onNavigateToRegister = {
