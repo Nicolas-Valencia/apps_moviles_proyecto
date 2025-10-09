@@ -5,7 +5,10 @@ import kotlinx.serialization.Serializable
 sealed class RouteScreen {
 
     @Serializable
-    data object Home : RouteScreen()
+    data object HomeUser : RouteScreen()
+
+    @Serializable
+    data object HomeAdmin : RouteScreen()
 
     @Serializable
     data object Login : RouteScreen()
