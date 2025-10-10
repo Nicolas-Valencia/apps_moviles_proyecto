@@ -43,6 +43,69 @@ class UsersViewModel: ViewModel(){
                 city = "Armenia",
                 email = "maria@email.com",
                 password = "123456"
+            ),
+            User(
+                id = "4",
+                name = "Ana",
+                username = "ana123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "ana@email.com",
+                password = "123456"
+            ),
+            User(
+                id = "5",
+                name = "Luis",
+                username = "luis123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "luis@email.com",
+                password = "123456"
+            ),
+            User(
+                id = "6",
+                name = "Carlos",
+                username = "carlos123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "carlos@email.com",
+                password = "123456"
+            ),
+            User(
+                id = "7",
+                name = "Sofia",
+                username = "sofia123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "sofia@email.com",
+                password = "12345"
+            ),
+            User(
+                id = "8",
+                name = "Laura",
+                username = "laura123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "laura@email.com",
+                password = "123456"
+            ),
+            User(
+                id = "9",
+                name = "Diego",
+                username = "diego123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "diego@email.com",
+                password = "123456"
+            ),
+            User(
+                id = "10",
+                name = "Valentina",
+                username = "valentina123",
+                role = Role.USER,
+                city = "Armenia",
+                email = "valentina@email.com",
+                password = "12345"
             )
         )
     }

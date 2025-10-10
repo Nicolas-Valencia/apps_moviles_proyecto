@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,7 +43,7 @@ fun Search(padding: PaddingValues) {
             placeholder = { Text(stringResource(R.string.txt_search_placeholder)) },
             trailingIcon = {
                 IconButton(onClick = { /* abrir filtros */ }) {
-                    Icon(Icons.Outlined.Settings, contentDescription = "Filter")
+                    Icon(Icons.Outlined.Search, contentDescription = "Filter")
                 }
             },
             modifier = Modifier.fillMaxWidth()

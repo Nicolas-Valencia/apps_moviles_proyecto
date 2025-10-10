@@ -28,6 +28,38 @@ class ReviewsViewModel {
                 rating = 5,
                 comment = "Excelente servicio",
                 date = LocalDateTime.now()
+            ),
+            Review(
+                id = "2",
+                userID = "2",
+                placeId = "2",
+                rating = 4,
+                comment = "Buen lugar para pasar el rato",
+                date = LocalDateTime.now()
+            ),
+            Review(
+                id = "3",
+                userID = "3",
+                placeId = "3",
+                rating = 3,
+                comment = "Regular",
+                date = LocalDateTime.now()
+            ),
+            Review(
+                id = "4",
+                userID = "4",
+                placeId = "4",
+                rating = 2,
+                comment = "Mala atención",
+                date = LocalDateTime.now()
+            ),
+            Review(
+                id = "5",
+                userID = "5",
+                placeId = "5",
+                rating = 1,
+                comment = "Pésimo servicio",
+                date = LocalDateTime.now()
             )
         )
     }
