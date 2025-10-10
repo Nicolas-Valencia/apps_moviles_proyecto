@@ -1,6 +1,7 @@
 package com.example.appsmoviles.ui.screens
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -8,12 +9,15 @@ import com.example.appsmoviles.ui.config.RouteScreen
 import com.example.appsmoviles.ui.screen.CreatePlace
 import com.example.appsmoviles.ui.screens.admin.HomeAdmin
 import com.example.appsmoviles.ui.screens.user.HomeUser
+import com.example.appsmoviles.viewmodel.UsersViewModel
 
 
 @Composable
 fun Navigation() {
 
     val navController = rememberNavController()
+    val usersViewModel: UsersViewModel = viewModel()
+
 
     NavHost(
         navController = navController,
@@ -21,6 +25,7 @@ fun Navigation() {
     ) {
         composable<RouteScreen.Login> {
             LoginScreen(
+                usersViewModel = usersViewModel,
                 onNavigateToHomeAdmin = {
                     navController.navigate(RouteScreen.HomeAdmin)
                 },
@@ -35,6 +40,7 @@ fun Navigation() {
 
         composable<RouteScreen.Register> {
             RegisterScreen(
+                usersViewModel = usersViewModel,
                 onNavigateToLogin = {
                     navController.navigate(RouteScreen.Login)
                 }

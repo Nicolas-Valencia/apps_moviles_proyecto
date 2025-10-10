@@ -1,7 +1,5 @@
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,7 +20,6 @@ fun ContentUser(
     val placesViewModel: PlacesViewModel = PlacesViewModel()
 
     NavHost(
-        modifier = Modifier.padding(padding),
         navController = navController,
         startDestination = RouteTab.Home
     ){
@@ -31,13 +28,16 @@ fun ContentUser(
             Home()
         }
         composable<RouteTab.Search> {
-            Search()
+            Search(
+                padding = padding
+            )
         }
         composable<RouteTab.CreatePlace> {
             CreatePlace()
         }
         composable<RouteTab.Favorites> {
             Favorites(
+                padding = padding,
                 placesViewModel = placesViewModel
             )
         }

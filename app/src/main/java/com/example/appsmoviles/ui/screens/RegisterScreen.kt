@@ -28,10 +28,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.example.appsmoviles.model.Role
+import com.example.appsmoviles.model.User
 import com.example.appsmoviles.ui.components.TextFields
+import com.example.appsmoviles.viewmodel.UsersViewModel
+import java.util.UUID
 
 @Composable
 fun RegisterScreen (
+
+    usersViewModel: UsersViewModel,
     onNavigateToLogin: () -> Unit
 ) {
 
@@ -120,7 +126,20 @@ fun RegisterScreen (
 
             Button(
                 onClick = {
-                    if (name.isNotBlank() && user.isNotBlank() && email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && city.isNotBlank() && password.isNotBlank() && password.length >= 6) {
+
+                    val user = User(
+                        id = UUID.randomUUID().toString(),
+                        name = name,
+                        username = user,
+                        city = city,
+                        role = Role.USER,
+                        email = email,
+                        password = password
+                    )
+
+                    usersViewModel.create(user)
+
+                    if (name.isNotBlank()  && email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && city.isNotBlank() && password.isNotBlank() && password.length >= 6) {
                         Toast.makeText(context, "Registro exitoso", Toast.LENGTH_SHORT).show()
                         onNavigateToLogin()
                     } else {

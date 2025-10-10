@@ -40,6 +40,17 @@ class PlacesViewModel {
                 phones = listOf("987654321", "123456789"),
                 schedule = listOf(),
                 type = PlaceType.SHOPPING
+            ),
+            Place(
+                id= "3",
+                name = "Parque del Cafe",
+                description = "Descripción del parque",
+                address = "Dirección del parque",
+                location = Location(5.0, 6.0),
+                images = listOf("https://caracol.com.co/resizer/v2/6DIRSYCRKNHW5LEBB5HTZOFC6Y.png?auth=f7fb5f73b7d4e5faf131ba13f379c924e19983a66f31cb12af3560535634633e&width=650&height=488&quality=70&smart=true"),
+                phones = listOf("987654321", "123456789"),
+                schedule = listOf(),
+                type = PlaceType.SHOPPING
             )
         )
     }
