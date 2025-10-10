@@ -76,7 +76,7 @@ fun TopBarAdmin(){
                 text = stringResource(R.string.txt_moderador),
                 color = Color.White,
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                fontSize = 12.sp
+                fontSize = 18.sp
             )
         }
     }

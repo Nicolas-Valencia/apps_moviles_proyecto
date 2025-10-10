@@ -151,4 +151,28 @@
 
     <string name="no_items">No hay lugares para mostrar</string>
 
+    <string name="txt_home_title">Inicio</string>
+    <string name="txt_near_places">Lugares cercanos</string>
+    <string name="txt_map_preview">Vista del mapa</string>
+    <string name="txt_view_full_map">Ver mapa completo</string>
+    <string name="txt_last_search">Última búsqueda</string>
+    <string name="txt_favorite_places">Lugares favoritos</string>
+    <string name="txt_distance_example">0.0 km (0)</string>
+
+    <string name="txt_search_placeholder">Buscar lugares...</string>
+    <string name="txt_found_places">Lugares encontrados</string>
+
+    <string name="txt_edit_profile">Editar perfil</string>
+    <string name="txt_change_password">Cambiar contraseña</string>
+    <string name="txt_my_places">Mis lugares</string>
+    <string name="txt_help_support">Ayuda y soporte</string>
+    <string name="txt_logout">Cerrar sesión</string>
+
+    <string name="txt_create_place_title">Crear Lugar</string>
+    <string name="txt_place_description">Descripción</string>
+    <string name="txt_place_category">Categoría</string>
+    <string name="txt_place_status">¿Abierto?</string>
+    <string name="txt_save_place">Guardar</string>
+
+
 </resources>

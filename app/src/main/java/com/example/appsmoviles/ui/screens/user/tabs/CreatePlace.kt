@@ -50,7 +50,8 @@ fun CreatePlace() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+            .padding(top = 136.dp) // 120dp for the original top padding + 16dp for the general padding
             .verticalScroll(rememberScrollState())
     ) {
 
