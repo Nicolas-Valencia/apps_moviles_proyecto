@@ -3,10 +3,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.example.appsmoviles.ui.screen.CreatePlace
 import com.example.appsmoviles.ui.screens.user.nav.RouteTab
 import com.example.appsmoviles.ui.screens.user.tabs.Favorites
 import com.example.appsmoviles.ui.screens.user.tabs.Home
+import com.example.appsmoviles.ui.screens.user.tabs.PlaceDetail
 import com.example.appsmoviles.ui.screens.user.tabs.Profile
 import com.example.appsmoviles.ui.screens.user.tabs.Search
 import com.example.appsmoviles.viewmodel.PlacesViewModel
@@ -38,11 +40,22 @@ fun ContentUser(
         composable<RouteTab.Favorites> {
             Favorites(
                 padding = padding,
-                placesViewModel = placesViewModel
+                placesViewModel = placesViewModel,
+                onNavigateToPlaceDetail = {
+                    navController.navigate(RouteTab.PlaceDetail(it))
+                }
             )
         }
         composable<RouteTab.Profile> {
             Profile()
+        }
+        composable<RouteTab.PlaceDetail> {
+            val args = it.toRoute<RouteTab.PlaceDetail>()
+            PlaceDetail(
+                placesViewModel = placesViewModel,
+                padding = padding,
+                id = args.id
+            )
         }
     }
 

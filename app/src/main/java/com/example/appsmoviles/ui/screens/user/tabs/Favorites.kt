@@ -24,7 +24,8 @@ import com.example.appsmoviles.viewmodel.PlacesViewModel
 @Composable
 fun Favorites(
     padding: PaddingValues,
-    placesViewModel: PlacesViewModel
+    placesViewModel: PlacesViewModel,
+    onNavigateToPlaceDetail: (String) -> Unit
 ){
 
     val places by placesViewModel.places.collectAsState()
@@ -39,7 +40,7 @@ fun Favorites(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.small)
                     .clickable{
-
+                        onNavigateToPlaceDetail(it.id)
                     },
                 headlineContent = { Text(text = it.name) },
                 supportingContent = { Text(text = it.description) },
