@@ -174,5 +174,16 @@
     <string name="txt_place_status">¿Abierto?</string>
     <string name="txt_save_place">Guardar</string>
 
+    <string name="add_place">Agregar lugar</string>
+    <string name="place_image">Imagen del lugar</string>
+    <string name="open_status">Abierto</string>
+    <string name="details_title">Detalles</string>
+    <string name="city_label">Ciudad</string>
+    <string name="address_label">Dirección</string>
+    <string name="phone_label">Teléfono</string>
+    <string name="place_not_found">Lugar no encontrado</string>
+
+
+
 
 </resources>
