@@ -15,8 +15,9 @@ import com.example.appsmoviles.viewmodel.PlacesViewModel
 
 @Composable
 fun ContentUser(
+    navController: NavHostController,
     padding: PaddingValues,
-    navController: NavHostController
+    onNavigateToEditAccount: () -> Unit
 ) {
 
     val placesViewModel: PlacesViewModel = PlacesViewModel()
@@ -35,7 +36,7 @@ fun ContentUser(
             )
         }
         composable<RouteTab.CreatePlace> {
-            CreatePlace()
+            CreatePlace(padding = padding)
         }
         composable<RouteTab.Favorites> {
             Favorites(
@@ -47,7 +48,10 @@ fun ContentUser(
             )
         }
         composable<RouteTab.Profile> {
-            Profile()
+            Profile(
+                padding = padding,
+                onNavigateToEditAccount = onNavigateToEditAccount
+            )
         }
         composable<RouteTab.PlaceDetail> {
             val args = it.toRoute<RouteTab.PlaceDetail>()

@@ -25,16 +25,19 @@ import androidx.compose.ui.unit.sp
 import com.example.appsmoviles.R
 
 @Composable
-fun Profile() {
+fun Profile(
+    padding: PaddingValues = PaddingValues(0.dp),
+    onNavigateToEditAccount: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
-            .padding(top = 120.dp),
+            .padding(padding)
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Foto y nombre de usuario ---
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Foto de perfil",
@@ -60,7 +63,6 @@ fun Profile() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Estadísticas del usuario ---
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
@@ -72,29 +74,31 @@ fun Profile() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // --- Opciones del perfil ---
         Column(modifier = Modifier.fillMaxWidth()) {
             ProfileOption(
                 icon = Icons.Default.Edit,
-                text = stringResource(R.string.txt_edit_profile)
+                text = stringResource(R.string.txt_edit_profile),
+                onClick = onNavigateToEditAccount
             )
             ProfileOption(
                 icon = Icons.Outlined.Lock,
-                text = stringResource(R.string.txt_change_password)
+                text = stringResource(R.string.txt_change_password),
+                onClick = { /* Acción */ }
             )
             ProfileOption(
                 icon = Icons.Outlined.LocationOn,
-                text = stringResource(R.string.txt_my_places)
+                text = stringResource(R.string.txt_my_places),
+                onClick = { /* Acción */ }
             )
             ProfileOption(
                 icon = Icons.Outlined.Info,
-                text = stringResource(R.string.txt_help_support)
+                text = stringResource(R.string.txt_help_support),
+                onClick = { /* Acción */ }
             )
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // --- Botón de cerrar sesión ---
         Button(
             onClick = { /* Acción de logout */ },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE74C3C)),
@@ -107,6 +111,8 @@ fun Profile() {
             Spacer(modifier = Modifier.width(8.dp))
             Text(stringResource(R.string.txt_logout))
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
@@ -119,9 +125,9 @@ fun UserStat(label: String, value: String) {
 }
 
 @Composable
-fun ProfileOption(icon: Any, text: String) {
+fun ProfileOption(icon: Any, text: String, onClick: () -> Unit = {}) {
     OutlinedButton(
-        onClick = { /* Acción */ },
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),

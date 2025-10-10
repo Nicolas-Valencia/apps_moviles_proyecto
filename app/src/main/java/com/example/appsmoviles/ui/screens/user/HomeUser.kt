@@ -26,7 +26,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appsmoviles.R
 
 @Composable
-fun HomeUser(){
+fun HomeUser(
+    onNavigateToEditAccount: () -> Unit = {}
+){
 
     val navController = rememberNavController()
 
@@ -43,7 +45,8 @@ fun HomeUser(){
     ) { padding ->
         ContentUser(
             navController = navController,
-            padding = padding
+            padding = padding,
+            onNavigateToEditAccount = onNavigateToEditAccount
         )
 
     }

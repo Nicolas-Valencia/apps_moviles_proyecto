@@ -52,7 +52,11 @@ fun Navigation() {
         }
 
         composable<RouteScreen.HomeUser> {
-            HomeUser()
+            HomeUser(
+                onNavigateToEditAccount = {
+                    navController.navigate(RouteScreen.EditAccount)
+                }
+            )
         }
 
         composable<RouteScreen.CreatePlace> {
@@ -60,9 +64,12 @@ fun Navigation() {
         }
 
         composable<RouteScreen.EditAccount> {
-            EditAccount()
+            EditAccount(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 
 }
-

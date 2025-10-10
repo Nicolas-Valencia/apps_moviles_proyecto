@@ -16,44 +16,50 @@ import androidx.compose.ui.unit.sp
 import android.widget.Toast
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
+import com.example.appsmoviles.model.Location
+import com.example.appsmoviles.model.Place
+import com.example.appsmoviles.model.PlaceType
+import com.example.appsmoviles.model.Schedule
 import com.example.appsmoviles.ui.components.DropdownMenu
 import com.example.appsmoviles.ui.components.TextFields
+import java.time.LocalTime
+import java.util.UUID
 
 @Composable
-fun CreatePlace() {
+fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
     val context = LocalContext.current
 
     var nombre by rememberSaveable { mutableStateOf("") }
     var descripcion by rememberSaveable { mutableStateOf("") }
-    var horario by rememberSaveable { mutableStateOf("") }
-    var categoria by rememberSaveable { mutableStateOf("") }
-    var linkUbicacion by rememberSaveable { mutableStateOf("") }
-    var telefono by rememberSaveable { mutableStateOf("") }
+    var direccion by rememberSaveable { mutableStateOf("") }
+    var latitud by rememberSaveable { mutableStateOf("") }
+    var longitud by rememberSaveable { mutableStateOf("") }
+    var imagenesUrls by rememberSaveable { mutableStateOf("") }
+    var telefonos by rememberSaveable { mutableStateOf("") }
+    var tipoSeleccionado by rememberSaveable { mutableStateOf("") }
 
-    // Estados para errores
     var nombreError by remember { mutableStateOf(false) }
     var descripcionError by remember { mutableStateOf(false) }
-    var horarioError by remember { mutableStateOf(false) }
-    var categoriaError by remember { mutableStateOf(false) }
-    var linkUbicacionError by remember { mutableStateOf(false) }
-    var telefonoError by remember { mutableStateOf(false) }
+    var direccionError by remember { mutableStateOf(false) }
+    var tipoError by remember { mutableStateOf(false) }
 
-    val categorias = listOf(
-        stringResource(R.string.txt_restaurant),
-        stringResource(R.string.txt_cafeteria),
-        stringResource(R.string.txt_bar),
-        stringResource(R.string.txt_hotel),
-        stringResource(R.string.txt_shop),
-        stringResource(R.string.txt_service)
+    val tiposLugar = listOf(
+        "Restaurante",
+        "Bar",
+        "Hotel",
+        "Parque",
+        "Tienda",
+        "Otros"
     )
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-            .padding(top = 136.dp) // 120dp for the original top padding + 16dp for the general padding
+            .padding(padding)
+            .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = stringResource(R.string.txt_create_place),
@@ -62,17 +68,16 @@ fun CreatePlace() {
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 32.dp)
+                .padding(bottom = 24.dp)
         )
 
         Text(
             text = stringResource(R.string.txt_basic_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 12.dp)
         )
 
-        // Campo Nombre usando componente TextFields
         TextFields(
             value = nombre,
             label = stringResource(R.string.txt_name),
@@ -80,10 +85,8 @@ fun CreatePlace() {
             onValueChange = { nombre = it },
             onValidate = { it.isBlank() }
         )
-
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Campo Descripción usando componente TextFields
         TextFields(
             value = descripcion,
             label = stringResource(R.string.txt_description),
@@ -91,94 +94,132 @@ fun CreatePlace() {
             onValueChange = { descripcion = it },
             onValidate = { it.isBlank() }
         )
-
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Campo Horario usando componente TextFields
         TextFields(
-            value = horario,
-            label = stringResource(R.string.txt_horario),
-            supportingText = stringResource(R.string.txt_horario_error),
-            onValueChange = { horario = it },
+            value = direccion,
+            label = "Dirección",
+            supportingText = "La dirección es requerida",
+            onValueChange = { direccion = it },
             onValidate = { it.isBlank() }
         )
-
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Componente DropdownMenu
         DropdownMenu(
-            label = stringResource(R.string.txt_select_category),
-            list = categorias,
-            selectedItem = categoria,
+            label = "Tipo de lugar",
+            list = tiposLugar,
+            selectedItem = tipoSeleccionado,
             onValueChange = {
-                categoria = it
-                categoriaError = false
+                tipoSeleccionado = it
+                tipoError = false
             },
-            isError = categoriaError
+            isError = tipoError
         )
-
-        if (categoriaError) {
+        if (tipoError) {
             Text(
-                text = stringResource(R.string.txt_select_category_error),
+                text = "Selecciona un tipo de lugar",
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 16.dp)
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 8.dp)
             )
-        } else {
-            Spacer(modifier = Modifier.height(16.dp))
         }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Ubicación",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
+
+        OutlinedTextField(
+            value = latitud,
+            onValueChange = { latitud = it },
+            label = { Text("Latitud") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = longitud,
+            onValueChange = { longitud = it },
+            label = { Text("Longitud") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = stringResource(R.string.txt_contact_info),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 12.dp)
         )
 
-        // Campo Link Ubicación usando componente TextFields
-        TextFields(
-            value = linkUbicacion,
-            label = stringResource(R.string.txt_link_ubicacion),
-            supportingText = stringResource(R.string.txt_link_ubicacion_error),
-            onValueChange = { linkUbicacion = it },
-            onValidate = { it.isBlank() },
+        OutlinedTextField(
+            value = telefonos,
+            onValueChange = { telefonos = it },
+            label = { Text("Teléfonos") },
+            modifier = Modifier.fillMaxWidth()
         )
-
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Campo Teléfono usando componente TextFields
-        TextFields(
-            value = telefono,
-            label = stringResource(R.string.txt_telefono),
-            supportingText = stringResource(R.string.txt_telefono_error),
-            onValueChange = { telefono = it },
-            onValidate = { it.isBlank() }
+        OutlinedTextField(
+            value = imagenesUrls,
+            onValueChange = { imagenesUrls = it },
+            label = { Text("URLs de imágenes") },
+            modifier = Modifier.fillMaxWidth()
         )
-
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
             onClick = {
-
                 nombreError = nombre.isBlank()
                 descripcionError = descripcion.isBlank()
-                horarioError = horario.isBlank()
-                categoriaError = categoria.isBlank()
-                linkUbicacionError = linkUbicacion.isBlank()
-                telefonoError = telefono.isBlank()
+                direccionError = direccion.isBlank()
+                tipoError = tipoSeleccionado.isBlank()
 
-                if (!nombreError && !descripcionError && !horarioError &&
-                    !categoriaError && !linkUbicacionError && !telefonoError) {
+                if (!nombreError && !descripcionError && !direccionError && !tipoError) {
+                    val placeType = when(tipoSeleccionado) {
+                        "Restaurante" -> PlaceType.RESTAURANT
+                        "Bar" -> PlaceType.BAR
+                        "Hotel" -> PlaceType.HOLTEL
+                        "Parque" -> PlaceType.PARK
+                        "Tienda" -> PlaceType.SHOPPING
+                        else -> PlaceType.OTHER
+                    }
 
+                    val lat = latitud.toDoubleOrNull() ?: 0.0
+                    val lon = longitud.toDoubleOrNull() ?: 0.0
+
+                    val place = Place(
+                        id = UUID.randomUUID().toString(),
+                        name = nombre,
+                        description = descripcion,
+                        address = direccion,
+                        location = Location(latitude = lat, longitude = lon),
+                        images = if (imagenesUrls.isNotBlank())
+                            imagenesUrls.split(",").map { it.trim() }
+                        else
+                            emptyList(),
+                        phones = if (telefonos.isNotBlank())
+                            telefonos.split(",").map { it.trim() }
+                        else
+                            emptyList(),
+                        schedule = emptyList(),
+                        type = placeType
+                    )
+
+                    Log.d("CreatePlace", "Lugar creado: $place")
                     Toast.makeText(context, context.getString(R.string.txt_place_created), Toast.LENGTH_SHORT).show()
-                    Log.d("RegisterScreen", "valores: $nombre, $descripcion, $horario, $categoria, $linkUbicacion, $telefono")
 
                     nombre = ""
                     descripcion = ""
-                    horario = ""
-                    categoria = ""
-                    linkUbicacion = ""
-                    telefono = ""
+                    direccion = ""
+                    latitud = ""
+                    longitud = ""
+                    imagenesUrls = ""
+                    telefonos = ""
+                    tipoSeleccionado = ""
                 }
             },
             modifier = Modifier
@@ -187,5 +228,7 @@ fun CreatePlace() {
         ) {
             Text(stringResource(R.string.txt_save), fontSize = 16.sp)
         }
+
+        Spacer(modifier = Modifier.height(32.dp))
     }
 }
