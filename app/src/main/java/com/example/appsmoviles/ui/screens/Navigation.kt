@@ -21,7 +21,7 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = RouteScreen.HomeUser
+        startDestination = RouteScreen.HomeAdmin
     ) {
         composable<RouteScreen.Login> {
             LoginScreen(

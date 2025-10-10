@@ -74,7 +74,81 @@
     <string name="menu_managementPlace">Gestión Lugares</string>
     <string name="menu_rules">Normas</string>
     <string name="menu_profileAdmin">Perfil</string>
+    <string name="txt_moderador">Moderador</string>
+    <string name="txt_panel">Panel de Control</string>
+    <string name="txt_desc_panel">Gestiona y revisa lugares enviados por la comunidad</string>
+    <string name="txt_pending">Pendientes</string>
+    <string name="desc_pending">Requieren revisión</string>
+    <string name="txt_reviewed">Revisados</string>
+    <string name="desc_reviewed">Lugares Activos</string>
+    <string name="txt_rejected">Rechazados</string>
+    <string name="desc_rejected">No cumplían Normas</string>
+    <string name="txt_total">Total</string>
+    <string name="desc_total">Lugares Revisados</string>
+    <string name="txt_gestion">Gestion de Lugares</string>
+    <string name="txt_gestion_description">Gestiona y revisa lugares enviados por la comunidad</string>
+    <string name="txt_rules">Normas</string>
+    <string name="txt_username">Nombre de Usuario</string>
+    <string name="txt_place_img">Imagen del Lugar</string>
+    <string name="txt_place_name">Nombre del Lugar</string>
+    <string name="txt_place_address">Dirección del Lugar</string>
+    <string name="txt_description_place">Descripción del Lugar</string>
+    <string name="txt_aprove">Aprobar</string>
+    <string name="txt_reject">Rechazar</string>
 
+    <!-- Reglas -->
+    <string name="rules_title">Normas de moderación</string>
+    <string name="rules_criteria_title">Criterios para aprobar lugares:</string>
+    <string name="rules_criteria_item1">El lugar debe existir físicamente</string>
+    <string name="rules_criteria_item2">La información debe ser precisa y completa</string>
+    <string name="rules_criteria_item3">Las fotos deben ser del lugar real</string>
+    <string name="rules_criteria_item4">No debe contener contenido inapropiado</string>
+    <string name="rules_criteria_item5">Los horarios deben ser actuales</string>
+    <string name="rules_reject_title">Razones para rechazar:</string>
+    <string name="rules_reject_item1">Información falsa o incorrecta</string>
+    <string name="rules_reject_item2">Lugar que no existe</string>
+    <string name="rules_reject_item3">Contenido spam o promocional</string>
+    <string name="rules_reject_item4">Fotos no relacionadas al lugar</string>
+    <string name="rules_reject_item5">Violación de las normas de la comunidad</string>
 
+    <!-- Perfil -->
+    <string name="profile_title">Perfil</string>
+    <string name="profile_photo_desc">Foto de perfil</string>
+    <string name="profile_role_moderator">Moderador</string>
+    <string name="profile_name_label">Nombre:</string>
+    <string name="profile_username_placeholder">@Username</string>
+    <string name="profile_city_label">Ciudad:</string>
+    <string name="profile_account_title">Cuenta</string>
+    <string name="profile_edit">Editar perfil</string>
+    <string name="profile_edit_desc">Actualiza tu información personal</string>
+    <string name="profile_change_password">Cambiar contraseña</string>
+    <string name="profile_change_password_desc">Actualiza tu contraseña</string>
+    <string name="profile_help">Ayuda y soporte</string>
+    <string name="profile_help_desc">Obtén ayuda o reporta problemas</string>
+    <string name="profile_logout">Cerrar sesión</string>
+    <string name="profile_logout_desc">Cerrar sesión</string>
+
+    <!-- App info -->
+    <string name="app_version">Versión 1.0</string>
+    <string name="app_description">Descubre y comparte los mejores lugares locales</string>
+
+    <string name="management_title">Gestión de lugares</string>
+    <string name="management_subtitle">Revisa y gestiona los lugares enviados por los usuarios.</string>
+
+    <string name="tab_pendientes">Pendientes</string>
+    <string name="tab_aprobados">Aprobados</string>
+    <string name="tab_rechazados">Rechazados</string>
+
+    <string name="approve">Aprobar</string>
+    <string name="reject">Rechazar</string>
+
+    <string name="label_description">Descripción:</string>
+    <string name="label_address">Dirección:</string>
+
+    <!-- Formatos con placeholders -->
+    <string name="user_prefix">👤 %1$s</string>
+    <string name="place_name_prefix">🏙️ %1$s</string>
+
+    <string name="no_items">No hay lugares para mostrar</string>
 
 </resources>

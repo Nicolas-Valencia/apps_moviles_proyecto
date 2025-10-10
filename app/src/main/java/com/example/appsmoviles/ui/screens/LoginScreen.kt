@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.appsmoviles.ui.components.TextFields
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
+import com.example.appsmoviles.model.Role
 import com.example.appsmoviles.viewmodel.UsersViewModel
 
 @Composable
@@ -88,8 +89,13 @@ fun LoginScreen (
 
                     if(userLogged != null){
 
-                        onNavigateToHomeUser()
-                        Toast.makeText(context, "Inicio de sesión exitoso, bienvenido usuario", Toast.LENGTH_SHORT).show()
+                        if (userLogged.role == Role.ADMIN) {
+                            onNavigateToHomeAdmin()
+                            Toast.makeText(context, "Inicio de sesión exitoso, bienvenido ${userLogged.name}", Toast.LENGTH_SHORT).show()
+                        } else {
+                            onNavigateToHomeUser()
+                            Toast.makeText(context, "Inicio de sesión exitoso, bienvenido ${userLogged.name}", Toast.LENGTH_SHORT).show()
+                        }
                     } else{
                         Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
                     }
