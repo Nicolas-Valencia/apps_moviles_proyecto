@@ -15,7 +15,8 @@ import com.example.appsmoviles.ui.screens.admin.tabs.Rules
 @Composable
 fun ContentAdmin(
     padding: PaddingValues,
-    navController: NavHostController
+    navController: NavHostController,
+    onNavigateToLogin: () -> Unit
 ){
 
     NavHost(
@@ -33,7 +34,7 @@ fun ContentAdmin(
             Rules()
         }
         composable<RouteTab.Profile> {
-            Profile()
+            Profile(onNavigateToLogin = onNavigateToLogin)
         }
     }
 

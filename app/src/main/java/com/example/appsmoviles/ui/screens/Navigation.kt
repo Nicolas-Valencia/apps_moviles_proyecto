@@ -66,13 +66,20 @@ fun Navigation() {
         }
 
         composable<RouteScreen.HomeAdmin> {
-            HomeAdmin()
+            HomeAdmin(
+                onNavigateToLogin = {
+                    navController.navigate(RouteScreen.Login)
+                }
+            )
         }
 
         composable<RouteScreen.HomeUser> {
             HomeUser(
                 onNavigateToEditAccount = {
                     navController.navigate(RouteScreen.EditAccount)
+                },
+                onNavigateToLogin = {
+                    navController.navigate(RouteScreen.Login)
                 }
             )
         }

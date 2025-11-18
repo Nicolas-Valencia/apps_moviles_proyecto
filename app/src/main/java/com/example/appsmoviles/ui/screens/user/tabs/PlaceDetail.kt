@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.appsmoviles.viewmodel.PlacesViewModel
+import com.mapbox.geojson.Point
+import com.mapbox.maps.extension.compose.MapboxMap
+import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -304,6 +307,20 @@ fun PlaceDetail(
                         Text("Llamar")
                     }
                 }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                MapboxMap(
+                    Modifier
+                        .height(350.dp),
+                    mapViewportState = rememberMapViewportState {
+                        setCameraOptions {
+                            zoom(7.0)
+                            center(Point.fromLngLat(-75.6491181, 4.4687891))
+                            pitch(45.0)
+                        }
+                    },
+                )
 
                 Spacer(modifier = Modifier.height(32.dp))
             }

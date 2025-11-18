@@ -24,7 +24,9 @@ import androidx.compose.ui.unit.sp
 import com.example.appsmoviles.R
 
 @Composable
-fun Profile() {
+fun Profile(
+    onNavigateToLogin: () -> Unit
+) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -155,7 +157,9 @@ fun Profile() {
 
             // Botón de cerrar sesión
             Button(
-                onClick = { /* acción de cerrar sesión */ },
+                onClick = {
+                    onNavigateToLogin()
+                },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE53935)),
                 shape = RoundedCornerShape(50),
                 modifier = Modifier

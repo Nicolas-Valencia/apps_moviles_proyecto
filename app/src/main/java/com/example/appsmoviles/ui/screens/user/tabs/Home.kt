@@ -16,6 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appsmoviles.R
+import com.mapbox.geojson.Point
+import com.mapbox.maps.MapboxMap
+import com.mapbox.maps.extension.compose.MapboxMap
+import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
 
 @Composable
 fun Home() {
@@ -34,37 +38,17 @@ fun Home() {
         )
 
         // --- Sección Lugares Cercanos ---
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFEFEFEF))
-        ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = stringResource(R.string.txt_near_places),
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp)
-                        .background(Color(0xFFD6E9FF), RoundedCornerShape(12.dp)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(R.string.txt_map_preview),
-                        fontSize = 14.sp,
-                        textAlign = TextAlign.Center
-                    )
+        MapboxMap(
+            Modifier
+                .height(350.dp),
+            mapViewportState = rememberMapViewportState {
+                setCameraOptions {
+                    zoom(7.0)
+                    center(Point.fromLngLat(-75.6491181, 4.4687891))
+                    pitch(45.0)
                 }
-                Spacer(modifier = Modifier.height(8.dp))
-                TextButton(onClick = { /* Navegar a mapa completo */ }) {
-                    Text(stringResource(R.string.txt_view_full_map))
-                }
-            }
-        }
+            },
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

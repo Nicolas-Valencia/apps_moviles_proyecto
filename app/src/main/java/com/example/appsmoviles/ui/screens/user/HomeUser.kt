@@ -27,7 +27,8 @@ import com.example.appsmoviles.R
 
 @Composable
 fun HomeUser(
-    onNavigateToEditAccount: () -> Unit = {}
+    onNavigateToEditAccount: () -> Unit = {},
+    onNavigateToLogin: () -> Unit
 ){
 
     val navController = rememberNavController()
@@ -46,9 +47,9 @@ fun HomeUser(
         ContentUser(
             navController = navController,
             padding = padding,
-            onNavigateToEditAccount = onNavigateToEditAccount
+            onNavigateToEditAccount = onNavigateToEditAccount,
+            onNavigateToLogin = onNavigateToLogin
         )
-
     }
 }
 

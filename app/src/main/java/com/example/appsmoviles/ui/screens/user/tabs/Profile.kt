@@ -27,7 +27,8 @@ import com.example.appsmoviles.R
 @Composable
 fun Profile(
     padding: PaddingValues = PaddingValues(0.dp),
-    onNavigateToEditAccount: () -> Unit = {}
+    onNavigateToEditAccount: () -> Unit = {},
+    onNavigateToLogin: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -100,7 +101,9 @@ fun Profile(
         Spacer(modifier = Modifier.weight(1f))
 
         Button(
-            onClick = { /* Acción de logout */ },
+            onClick = {
+                onNavigateToLogin()
+            },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE74C3C)),
             modifier = Modifier
                 .fillMaxWidth()

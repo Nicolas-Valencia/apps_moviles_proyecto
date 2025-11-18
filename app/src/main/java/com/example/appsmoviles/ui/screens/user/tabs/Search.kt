@@ -17,6 +17,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.appsmoviles.R
+import com.mapbox.geojson.Point
+import com.mapbox.maps.extension.compose.MapboxMap
+import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,15 +54,17 @@ fun Search(padding: PaddingValues) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .background(Color(0xFFD6E9FF), RoundedCornerShape(12.dp)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(stringResource(R.string.txt_map_preview))
-        }
+        MapboxMap(
+            Modifier
+                .height(350.dp),
+            mapViewportState = rememberMapViewportState {
+                setCameraOptions {
+                    zoom(7.0)
+                    center(Point.fromLngLat(-75.6491181, 4.4687891))
+                    pitch(45.0)
+                }
+            },
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
         TextButton(onClick = { /* Ver mapa completo */ }) {

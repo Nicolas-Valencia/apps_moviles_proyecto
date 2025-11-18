@@ -26,7 +26,9 @@ import com.example.appsmoviles.ui.screens.admin.bottombar.BottomBarAdmin
 import com.example.appsmoviles.ui.screens.admin.nav.ContentAdmin
 
 @Composable
-fun HomeAdmin(){
+fun HomeAdmin(
+    onNavigateToLogin: () -> Unit
+){
 
     val navController = rememberNavController()
 
@@ -45,7 +47,8 @@ fun HomeAdmin(){
     ) { padding ->
         ContentAdmin(
             navController = navController,
-            padding = padding
+            padding = padding,
+            onNavigateToLogin = onNavigateToLogin
         )
 
     }
