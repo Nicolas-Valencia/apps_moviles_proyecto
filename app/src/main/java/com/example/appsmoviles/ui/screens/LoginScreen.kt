@@ -33,8 +33,7 @@ import com.example.appsmoviles.viewmodel.UsersViewModel
 fun LoginScreen (
 
     usersViewModel: UsersViewModel,
-    onNavigateToHomeUser: () -> Unit,
-    onNavigateToHomeAdmin: () -> Unit,
+    onNavigateToHome: (String, Role) -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
 
@@ -88,16 +87,8 @@ fun LoginScreen (
                     val userLogged = usersViewModel.login(email, password)
 
                     if(userLogged != null){
-
-                        if (userLogged.role == Role.ADMIN) {
-                            onNavigateToHomeAdmin()
-                            Toast.makeText(context, "Inicio de sesión exitoso, bienvenido ${userLogged.name}", Toast.LENGTH_SHORT).show()
-                        } else {
-                            onNavigateToHomeUser()
-                            Toast.makeText(context, "Inicio de sesión exitoso, bienvenido ${userLogged.name}", Toast.LENGTH_SHORT).show()
-                        }
-                    } else{
-                        Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
+                        onNavigateToHome(userLogged.id, userLogged.role)
+                        Toast.makeText(context, "Datos correctos", Toast.LENGTH_SHORT).show()
                     }
                 },
                 content = {
