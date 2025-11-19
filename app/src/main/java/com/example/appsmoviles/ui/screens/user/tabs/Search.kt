@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.appsmoviles.R
+import com.example.appsmoviles.ui.components.Map
 import com.mapbox.geojson.Point
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
@@ -54,16 +55,9 @@ fun Search(padding: PaddingValues) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        MapboxMap(
-            Modifier
-                .height(350.dp),
-            mapViewportState = rememberMapViewportState {
-                setCameraOptions {
-                    zoom(7.0)
-                    center(Point.fromLngLat(-75.6491181, 4.4687891))
-                    pitch(45.0)
-                }
-            },
+        Map(
+            modifier = Modifier
+                .height(300.dp)
         )
 
         Spacer(modifier = Modifier.height(8.dp))

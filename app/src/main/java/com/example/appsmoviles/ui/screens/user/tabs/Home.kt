@@ -1,25 +1,43 @@
 package com.example.appsmoviles.ui.screens.user.tabs
 
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.example.appsmoviles.R
+import com.example.appsmoviles.ui.components.Map
 import com.mapbox.geojson.Point
 import com.mapbox.maps.MapboxMap
+import com.mapbox.maps.extension.compose.MapEffect
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotation
+import com.mapbox.maps.extension.compose.annotation.generated.PointAnnotation
+import com.mapbox.maps.extension.compose.annotation.rememberIconImage
+import com.mapbox.maps.plugin.PuckBearing
+import com.mapbox.maps.plugin.locationcomponent.createDefault2DPuck
+import com.mapbox.maps.plugin.locationcomponent.location
+import com.mapbox.maps.plugin.viewport.data.DefaultViewportTransitionOptions
 
 @Composable
 fun Home() {
@@ -29,7 +47,6 @@ fun Home() {
             .padding(16.dp)
             .padding(top = 120.dp)
     ) {
-
         Text(
             text = stringResource(R.string.txt_home_title),
             fontSize = 22.sp,
@@ -38,16 +55,9 @@ fun Home() {
         )
 
         // --- Sección Lugares Cercanos ---
-        MapboxMap(
-            Modifier
-                .height(350.dp),
-            mapViewportState = rememberMapViewportState {
-                setCameraOptions {
-                    zoom(7.0)
-                    center(Point.fromLngLat(-75.6491181, 4.4687891))
-                    pitch(45.0)
-                }
-            },
+        Map(
+            modifier = Modifier
+                .height(300.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -80,6 +90,37 @@ fun Home() {
             status = "Abierto"
         )
     }
+}
+
+@Composable
+fun rememberLocationPermissionState(
+    permission: String = android.Manifest.permission.ACCESS_FINE_LOCATION,
+    onPermissionResult: (Boolean) -> Unit
+): Boolean {
+    val context = LocalContext.current
+    val permissionGranted = remember{
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+    ) { granted ->
+        permissionGranted.value = granted
+        onPermissionResult(granted)
+    }
+
+    LaunchedEffect(Unit) {
+        if (!permissionGranted.value) {
+            launcher.launch(permission)
+        }
+    }
+
+    return permissionGranted.value
 }
 
 @Composable

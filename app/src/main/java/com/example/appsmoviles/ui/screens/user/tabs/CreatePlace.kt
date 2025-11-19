@@ -21,13 +21,17 @@ import com.example.appsmoviles.model.Place
 import com.example.appsmoviles.model.PlaceType
 import com.example.appsmoviles.model.Schedule
 import com.example.appsmoviles.ui.components.DropdownMenu
+import com.example.appsmoviles.ui.components.Map
 import com.example.appsmoviles.ui.components.TextFields
+import com.mapbox.geojson.Point
 import java.time.LocalTime
 import java.util.UUID
 
 @Composable
 fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
     val context = LocalContext.current
+
+    var clickedPoint by rememberSaveable { mutableStateOf<Point?>(null) }
 
     var nombre by rememberSaveable { mutableStateOf("") }
     var descripcion by rememberSaveable { mutableStateOf("") }
@@ -132,20 +136,16 @@ fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
-        OutlinedTextField(
-            value = latitud,
-            onValueChange = { latitud = it },
-            label = { Text("Latitud") },
-            modifier = Modifier.fillMaxWidth()
+        Map (
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            activateClick = true,
+            onMapClickListener = { l ->
+                clickedPoint = l
+            }
         )
-        Spacer(modifier = Modifier.height(8.dp))
 
-        OutlinedTextField(
-            value = longitud,
-            onValueChange = { longitud = it },
-            label = { Text("Longitud") },
-            modifier = Modifier.fillMaxWidth()
-        )
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
@@ -188,15 +188,12 @@ fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
                         else -> PlaceType.OTHER
                     }
 
-                    val lat = latitud.toDoubleOrNull() ?: 0.0
-                    val lon = longitud.toDoubleOrNull() ?: 0.0
-
                     val place = Place(
                         id = UUID.randomUUID().toString(),
                         name = nombre,
                         description = descripcion,
                         address = direccion,
-                        location = Location(latitude = lat, longitude = lon),
+                        location = Location(clickedPoint!!.latitude(), clickedPoint!!.longitude()),
                         images = if (imagenesUrls.isNotBlank())
                             imagenesUrls.split(",").map { it.trim() }
                         else
