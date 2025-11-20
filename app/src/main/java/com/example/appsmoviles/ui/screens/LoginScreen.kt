@@ -26,7 +26,9 @@ import androidx.compose.ui.res.stringResource
 import com.example.appsmoviles.ui.components.TextFields
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.runtime.collectAsState
 import com.example.appsmoviles.model.Role
+import com.example.appsmoviles.ui.components.OperationResultHandler
 import com.example.appsmoviles.viewmodel.UsersViewModel
 
 @Composable
@@ -36,6 +38,9 @@ fun LoginScreen (
     onNavigateToHome: (String, Role) -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
+
+    val userResult by usersViewModel.userResult.collectAsState()
+
 
     var email by rememberSaveable {mutableStateOf("")}
     var password by rememberSaveable {mutableStateOf("")}
@@ -84,12 +89,8 @@ fun LoginScreen (
             Button(
                 onClick = {
 
-                    val userLogged = usersViewModel.login(email, password)
+                    usersViewModel.login(email, password)
 
-                    if(userLogged != null){
-                        onNavigateToHome(userLogged.id, userLogged.role)
-                        Toast.makeText(context, "Datos correctos", Toast.LENGTH_SHORT).show()
-                    }
                 },
                 content = {
                     Icon(
@@ -116,6 +117,28 @@ fun LoginScreen (
                     )
                 }
             )
+
+            OperationResultHandler(
+                result = userResult,
+                onSuccess = {
+
+                    val currentUser = usersViewModel.currentUser.value
+
+                    currentUser?.let { user ->
+                        // Usa la función correcta: onNavigateToHome
+                        onNavigateToHome(user.id.toString(), user.role)
+                    } ?: run {
+                        // Si es nulo, puedes redirigir a HomeUser o Login
+                        onNavigateToHome("", Role.USER)
+                    }
+
+                    usersViewModel.resetOperationResult()
+                },
+                onFailure = {
+                    usersViewModel.resetOperationResult()
+                }
+            )
+
         }
     )
 }

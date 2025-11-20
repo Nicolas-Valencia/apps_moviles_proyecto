@@ -26,6 +26,8 @@ import com.example.appsmoviles.ui.components.TextFields
 import com.mapbox.geojson.Point
 import java.time.LocalTime
 import java.util.UUID
+import androidx.compose.material.icons.Icons
+
 
 @Composable
 fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
@@ -161,14 +163,18 @@ fun CreatePlace(padding: PaddingValues = PaddingValues(0.dp)) {
             label = { Text("Teléfonos") },
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
-            value = imagenesUrls,
-            onValueChange = { imagenesUrls = it },
-            label = { Text("URLs de imágenes") },
+        // Botón para seleccionar imagen
+        OutlinedButton(
+            onClick = {
+                // Aquí programarás la lógica para seleccionar imagen
+            },
             modifier = Modifier.fillMaxWidth()
-        )
+        ) {
+            Text("Seleccionar imagen")
+        }
+
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(

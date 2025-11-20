@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -30,6 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.example.appsmoviles.model.Role
 import com.example.appsmoviles.model.User
+import com.example.appsmoviles.ui.components.OperationResultHandler
 import com.example.appsmoviles.ui.components.TextFields
 import com.example.appsmoviles.viewmodel.UsersViewModel
 import java.util.UUID
@@ -40,6 +42,8 @@ fun RegisterScreen (
     usersViewModel: UsersViewModel,
     onNavigateToLogin: () -> Unit
 ) {
+
+    val userResult by usersViewModel.userResult.collectAsState()
 
     var name by rememberSaveable { mutableStateOf("") }
     var user by rememberSaveable { mutableStateOf("") }
@@ -171,6 +175,18 @@ fun RegisterScreen (
                     )
                 }
             )
+
+            OperationResultHandler(
+                result = userResult,
+                onSuccess = {
+                    onNavigateToLogin()
+                    usersViewModel.resetOperationResult()
+                },
+                onFailure = {
+                    usersViewModel.resetOperationResult()
+                }
+            )
+
         }
     )
 }
