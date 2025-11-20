@@ -176,6 +176,7 @@ class PlacesViewModel {
         _places.value = _places.value + place
     }
 
+
     fun update(place: Place){
         _places.value = _places.value.map {
             if(it.id == place.id){

@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.maps.compose)
     implementation(libs.firebase.firestore)
 
+    implementation(libs.cloudinary.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
